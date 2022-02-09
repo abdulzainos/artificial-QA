@@ -54,11 +54,12 @@ def driver(request):
         print("[INFO] chromeOptions: %s" % chrome_options.arguments)
 
         if platform in ('darwin', "linux", "linux2"):
-            d = webdriver.Chrome(options=chrome_options, service_args=service_args)
+            driver = webdriver.Chrome(options=chrome_options, service_args=service_args)
     else:
         print("[ERROR] unrecognized browser: {}".format(BROWSER))
         sys.exit(1)
 
+    print("[INFO] resolution: %s" % driver.get_window_size())
     print("[INFO] +++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
     # d.maximize_window()
