@@ -4,7 +4,7 @@
 * run `cd artificial`
 * run `python3 -m venv ./venv3`
 * run `source venv3/bin/activate`
-* run `cd ..` and `pip install -r requirements.txt`
+* run `pip install -r requirements.txt`
 
 ## run tests
 `python -m pytest ./tests`

@@ -59,7 +59,6 @@ def driver(request):
         print("[ERROR] unrecognized browser: {}".format(BROWSER))
         sys.exit(1)
 
-    print("[INFO] resolution: %s" % driver.get_window_size())
     print("[INFO] +++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
     # d.maximize_window()
