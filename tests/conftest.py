@@ -17,6 +17,12 @@ def pytest_addoption(parser):
     parser.addoption("--logger", action="store", default="INFO", help="Logger level: INFO, DEBUG, WARNING ERROR.")
     parser.addoption("--service-args", action="store_true", default=False, help="to enable chrome driver logs")
     parser.addoption("--reports", action="store_true", default=False, help="generate html report")
+    parser.addoption("--url", action="store", default="PLEASE PROVIDE URL", help="Url of the site")
+
+
+@pytest.fixture()
+def url(request):
+    return request.config.getoption("--url")
 
 
 @pytest.fixture()

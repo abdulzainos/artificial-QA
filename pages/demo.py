@@ -9,17 +9,12 @@ from .page import Page
 from selenium.webdriver.support.select import Select
 
 
-class Home(Page):
+class Demo(Page):
 
     def __init__(self, driver, logger):
         super().__init__(driver, logger)
         self.driver = driver
         self.logger = logger
-
-    def select_i_am(self, value="a potential customer"):
-        css = "#forminator-form-62__field--select-1"
-        select = Select(self.get_element_by_css(css))
-        select.select_by_visible_text(value)
 
     def enter_company_name(self, value):
         self.send_by_css("#forminator-field-text-1", value)

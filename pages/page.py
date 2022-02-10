@@ -67,9 +67,6 @@ class Page(object):
     def browser_back(self):
         self.driver.back()
 
-    def open_home_page(self):
-        self.open_url("https://www.artificial.com/")
-
     def get_current_url(self):
         self.logger.info("get_current_url: %s", self.driver.current_url)
         return self.driver.current_url

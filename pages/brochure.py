@@ -9,17 +9,12 @@ from .page import Page
 from selenium.webdriver.support.select import Select
 
 
-class Home(Page):
+class Brochure(Page):
 
     def __init__(self, driver, logger):
         super().__init__(driver, logger)
         self.driver = driver
         self.logger = logger
-
-    def select_i_am(self, value="a potential customer"):
-        css = "#forminator-form-62__field--select-1"
-        select = Select(self.get_element_by_css(css))
-        select.select_by_visible_text(value)
 
     def enter_company_name(self, value):
         self.send_by_css("#forminator-field-text-1", value)
@@ -36,11 +31,7 @@ class Home(Page):
     def enter_email(self, value):
         self.send_by_css("#forminator-field-email-1", value)
 
-    def enter_note(self, value):
-        self.send_by_css("#forminator-field-textarea-1", value)
-
-    def click_submit(self, success=True):
+    def click_download(self, success=True):
         self.click_by_css(".forminator-button-submit")
         if success:
-            xpath = '//h2[contains(.,"Thank you!")][contains(@class, "ct-headline")]'
-            self.wait_for_element_by_xpath(xpath)
+            self.wait_for_url_contains("Artificial-Product-Suite-Brochure.pdf")
