@@ -17,7 +17,7 @@ class Home(Page):
         self.logger = logger
 
     def select_i_am(self, value="a potential customer"):
-        css = "#forminator-form-62__field--select-1"
+        css = 'select[data-placeholder="Select an option"]'
         select = Select(self.get_element_by_css(css))
         select.select_by_visible_text(value)
 
@@ -44,3 +44,4 @@ class Home(Page):
         if success:
             xpath = '//h2[contains(.,"Thank you!")][contains(@class, "ct-headline")]'
             self.wait_for_element_by_xpath(xpath)
+            self.logger.info("Thank you! -> Form submitted ok")
