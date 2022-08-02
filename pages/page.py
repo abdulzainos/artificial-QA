@@ -455,3 +455,4 @@ class Page(object):
         self.wait_for_element_by_css(css)
         self.click_by_css("#hs-eu-confirmation-button")
         self.wait_until_element_not_visible_by_css(css)
+        self.logger.info("Cookie banner closed!")
