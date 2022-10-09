@@ -17,21 +17,22 @@ class Brochure(Page):
         self.logger = logger
 
     def enter_company_name(self, value):
-        self.send_by_css("#forminator-field-text-1", value)
+        self.send_by_css("input[name=\"company\"]", value)
 
     def enter_first_name(self, value):
-        self.send_by_css("#forminator-field-first-name-1", value)
+        self.send_by_css("input[name=\"firstname\"]", value)
 
     def enter_last_name(self, value):
-        self.send_by_css("#forminator-field-last-name-1", value)
+        self.send_by_css("input[name=\"lastname\"]", value)
 
     def enter_job_title(self, value):
-        self.send_by_css("#forminator-field-text-2", value)
+        self.send_by_css("input[name=\"jobtitle\"]", value)
 
     def enter_email(self, value):
-        self.send_by_css("#forminator-field-email-1", value)
+        self.send_by_css("input[name=\"email\"]", value)
 
     def click_download(self, success=True):
-        self.click_by_css(".forminator-button-submit")
+        self.click_by_css("[value=\"Submit\"]")
         if success:
+            self.select_main_window()
             self.wait_for_url_contains("Artificial-Product-Suite-Brochure.pdf")

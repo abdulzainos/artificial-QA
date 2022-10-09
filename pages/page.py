@@ -321,9 +321,13 @@ class Page(object):
         except:
             pass
 
-    def is_alert_present(self):
+    @staticmethod
+    def is_alert_present():
         if EC.alert_is_present:
             return True
+
+    def switch_to_iframe(self):
+        self.driver.switch_to.frame(self.driver.find_elements_by_tag_name("iframe")[0])
 
     # random
     # *******

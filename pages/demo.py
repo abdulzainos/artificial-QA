@@ -17,25 +17,28 @@ class Demo(Page):
         self.logger = logger
 
     def enter_company_name(self, value):
-        self.send_by_css("#forminator-field-text-1", value)
+        self.send_by_css("input[name=\"company\"]", value)
 
     def enter_first_name(self, value):
-        self.send_by_css("#forminator-field-first-name-1", value)
+        self.send_by_css("input[name=\"firstname\"]", value)
 
     def enter_last_name(self, value):
-        self.send_by_css("#forminator-field-last-name-1", value)
+        self.send_by_css("input[name=\"lastname\"]", value)
 
     def enter_job_title(self, value):
-        self.send_by_css("#forminator-field-text-2", value)
+        self.send_by_css("input[name=\"jobtitle\"]", value)
 
     def enter_email(self, value):
-        self.send_by_css("#forminator-field-email-1", value)
+        self.send_by_css("input[name=\"email\"]", value)
 
-    def enter_note(self, value):
-        self.send_by_css("#forminator-field-textarea-1", value)
+    def enter_country(self, value):
+        self.send_by_css("input[name=\"country\"]", value)
+
+    def enter_message(self, value):
+        self.send_by_css("textarea[name=\"message\"]", value)
 
     def click_submit(self, success=True):
-        self.click_by_css(".forminator-button-submit")
+        self.click_by_css("[value=\"Submit\"]")
         if success:
-            xpath = '//h2[contains(.,"Thank you!")][contains(@class, "ct-headline")]'
+            xpath = '//div[contains(.,"Thanks for submitting the form.")][contains(@class, "submitted-message")]'
             self.wait_for_element_by_xpath(xpath)
