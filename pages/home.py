@@ -22,22 +22,22 @@ class Home(Page):
         select.select_by_visible_text(value)
 
     def enter_company_name(self, value):
-        self.send_by_css("#forminator-field-text-1", value)
+        self.send_by_css("input[placeholder=\"your company name\"]", value)
 
     def enter_first_name(self, value):
-        self.send_by_css("#forminator-field-first-name-1", value)
+        self.send_by_css("input[placeholder=\"your first name\"]", value)
 
     def enter_last_name(self, value):
-        self.send_by_css("#forminator-field-last-name-1", value)
+        self.send_by_css("input[placeholder=\"your last name\"]", value)
 
     def enter_job_title(self, value):
-        self.send_by_css("#forminator-field-text-2", value)
+        self.send_by_css("input[placeholder=\"your job title\"]", value)
 
     def enter_email(self, value):
-        self.send_by_css("#forminator-field-email-1", value)
+        self.send_by_css("input[placeholder=\"your company email\"]", value)
 
     def enter_note(self, value):
-        self.send_by_css("#forminator-field-textarea-1", value)
+        self.send_by_css("[placeholder=\"how can we help you?\"]", value)
 
     def click_submit(self, success=True):
         self.click_by_css(".forminator-button-submit")

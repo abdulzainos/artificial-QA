@@ -32,12 +32,15 @@ def test_demo_request(driver, logger, url):
 
     demo.close_cookie_banner()
 
-    demo.enter_company_name("Xaicode")
+    demo.switch_to_iframe()
+
     demo.enter_first_name("Abdul")
     demo.enter_last_name("Zainos")
     demo.enter_job_title("Owner")
+    demo.enter_company_name("Xaicode")
     demo.enter_email("abdul@xaicode.com")
-    demo.enter_note("delete")
+    demo.enter_country("United States")
+    demo.enter_message("delete me")
     demo.click_submit()
 
 
@@ -48,6 +51,8 @@ def test_brochure(driver, logger, url):
     brochure.open_url(url + "brochure/")
 
     brochure.close_cookie_banner()
+
+    brochure.switch_to_iframe()
 
     brochure.enter_company_name("Xaicode")
     brochure.enter_first_name("Abdul")
