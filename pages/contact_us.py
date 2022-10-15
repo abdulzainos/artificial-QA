@@ -9,7 +9,7 @@ from .page import Page
 from selenium.webdriver.support.select import Select
 
 
-class Home(Page):
+class ContactUs(Page):
 
     def __init__(self, driver, logger):
         super().__init__(driver, logger)
