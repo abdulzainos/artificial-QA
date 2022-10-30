@@ -24,23 +24,23 @@ def test_contact_us_home(driver, logger, url):
     contact_us.click_submit()
 
 
-def test_contact_us(driver, logger, url):
-
-    contact_us = ContactUs(driver, logger)
-
-    contact_us.open_url(url + "contact/")
-
-    contact_us.close_cookie_banner()
-
-    contact_us.select_i_am("a potential customer")
-
-    contact_us.enter_company_name("Xaicode")
-    contact_us.enter_first_name("Abdul")
-    contact_us.enter_last_name("Zainos")
-    contact_us.enter_job_title("Owner")
-    contact_us.enter_email("abdul@xaicode.com")
-    contact_us.enter_note(f"delete: tested {url}contact/")
-    contact_us.click_submit()
+# def test_contact_us(driver, logger, url):
+#
+#     contact_us = ContactUs(driver, logger)
+#
+#     contact_us.open_url(url + "contact/")
+#
+#     contact_us.close_cookie_banner()
+#
+#     contact_us.select_i_am("a potential customer")
+#
+#     contact_us.enter_company_name("Xaicode")
+#     contact_us.enter_first_name("Abdul")
+#     contact_us.enter_last_name("Zainos")
+#     contact_us.enter_job_title("Owner")
+#     contact_us.enter_email("abdul@xaicode.com")
+#     contact_us.enter_note(f"delete: tested {url}contact/")
+#     contact_us.click_submit()
 
 # -------
 # Requested to test only contact us form
