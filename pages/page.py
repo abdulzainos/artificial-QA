@@ -454,9 +454,17 @@ class Page(object):
 
     # site functions
 
-    def close_cookie_banner(self):
-        css = "#hs-eu-cookie-confirmation"
-        self.wait_for_element_by_css(css)
-        self.click_by_css("#hs-eu-confirmation-button")
-        self.wait_until_element_not_visible_by_css(css)
+   def close_cookie_banner(self):
+    # Using the data-testid for the close button
+    close_button_selector = '[data-testid="uc-close-button"]'
+    
+    try:
+        # Wait for the close button to appear
+        self.wait_for_element_by_css(close_button_selector)
+        # Click the close button
+        self.click_by_css(close_button_selector)
+        # Wait until the banner is no longer visible
+        self.wait_until_element_not_visible_by_css(close_button_selector)
         self.logger.info("Cookie banner closed!")
+    except NoSuchElementException:
+        self.logger.error("Close button for cookie banner not found!")
