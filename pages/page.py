@@ -454,17 +454,27 @@ class Page(object):
 
     # site functions
 
-   def close_cookie_banner(self):
-    # Using the data-testid for the close button
-    close_button_selector = '[data-testid="uc-close-button"]'
+    def close_cookie_banner(self):
+        # Define selectors for different options to close the cookie banner
+        selectors = [
+            '[data-testid="uc-close-button"]',         # X (Close) button
+            '[data-testid="uc-deny-all-button"]',      # Deny button
+            '[data-testid="uc-accept-all-button"]'     # Accept All button
+        ]
+        
+        for selector in selectors:
+            try:
+                # Wait for the button to appear
+                self.wait_for_element_by_css(selector)
+                # Click the button
+                self.click_by_css(selector)
+                # Wait until the banner is no longer visible
+                self.wait_until_element_not_visible_by_css(selector)
+                self.logger.info(f"Cookie banner closed using selector: {selector}")
+                return  # Exit once a button has been clicked successfully
+            except NoSuchElementException:
+                self.logger.warning(f"Button with selector {selector} not found; trying next option.")
+            except Exception as e:
+                self.logger.error(f"Failed to close cookie banner with selector {selector}: {e}")
     
-    try:
-        # Wait for the close button to appear
-        self.wait_for_element_by_css(close_button_selector)
-        # Click the close button
-        self.click_by_css(close_button_selector)
-        # Wait until the banner is no longer visible
-        self.wait_until_element_not_visible_by_css(close_button_selector)
-        self.logger.info("Cookie banner closed!")
-    except NoSuchElementException:
-        self.logger.error("Close button for cookie banner not found!")
+        self.logger.error("Failed to close the cookie banner with all available options.")
