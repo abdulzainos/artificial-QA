@@ -454,7 +454,6 @@ class Page(object):
                 pytest.fail("delete_files: failed to delete files")
 
     # site functions
-
     def close_cookie_banner(self):
         # Define selectors for different options to close the cookie banner
         selectors = [
@@ -462,20 +461,23 @@ class Page(object):
             '[data-testid="uc-deny-all-button"]',      # Deny button
             '[data-testid="uc-accept-all-button"]'     # Accept All button
         ]
-        
+    
         for selector in selectors:
             try:
                 # Wait for the button to appear
-                self.wait_for_element_by_css(selector)
+                self.wait_for_element_by_css(selector, time_out=15)  # Slightly reduce time_out per selector to iterate faster
                 # Click the button
                 self.click_by_css(selector)
                 # Wait until the banner is no longer visible
                 self.wait_until_element_not_visible_by_css(selector)
                 self.logger.info(f"Cookie banner closed using selector: {selector}")
                 return  # Exit once a button has been clicked successfully
+            except TimeoutException:
+                self.logger.warning(f"Timeout while waiting for cookie banner close button with selector: {selector}")
+                time.sleep(1)  # Short delay before trying the next selector
             except NoSuchElementException:
-                self.logger.warning(f"Button with selector {selector} not found; trying next option.")
-            except Exception as e:
-                self.logger.error(f"Failed to close cookie banner with selector {selector}: {e}")
+                self.logger.warning(f"NoSuchElementException: Element not found for selector {selector}")
     
-        self.logger.error("Failed to close the cookie banner with all available options.")
+        # If all selectors fail, take a screenshot for debugging
+        self.driver.save_screenshot('cookie_banner_not_closed.png')
+        pytest.fail("Failed to close cookie banner. Screenshot saved as 'cookie_banner_not_closed.png'")
